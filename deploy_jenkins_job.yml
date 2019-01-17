@@ -1,0 +1,5 @@
+ - name: update repository cache and install jenkins
+ apt:
+     force_apt_get: yes
+     name: jenkins
+     update_cache: yes
