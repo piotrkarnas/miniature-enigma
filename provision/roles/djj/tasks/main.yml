@@ -37,5 +37,21 @@
   shell: docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
   register: jenkinssecret
 
-- name: Create jenkins job
-  shell: cat /root/config.xml | java -jar /root/jenkins-cli.jar -s http://localhost:8080 -auth admin:{{ jenkinssecret.stdout }} create-job lasttestbuild
+#- name: Create jenkins job
+ # shell: cat /root/config.xml | java -jar /root/jenkins-cli.jar -s http://localhost:8080 -auth admin:{{ jenkinssecret.stdout }} create-job lasttestbuild
+
+- name: Copy service definition
+  copy:
+    src: build.service
+    dest: /etc/systemd/system/
+
+- name: Copy build service script
+  copy:
+    src: build.sh
+    dest: /root/build.sh
+
+- name: start and enable build service
+  systemd:
+    name: build
+    state: started
+    enabled: yes

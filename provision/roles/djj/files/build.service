@@ -1,0 +1,13 @@
+[Unit]
+Description=Build Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root
+ExecStart=/root/build.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
