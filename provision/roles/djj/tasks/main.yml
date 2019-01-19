@@ -53,6 +53,7 @@
   copy:
     src: build.sh
     dest: /root/build.sh
+    mode: 0755
 
 - name: start and enable build service
   systemd:
