@@ -23,6 +23,10 @@
      - "127.0.0.1:8080:8080"
      - "127.0.0.1:50000:50000"
 
+- name: wait until netowrk socket responds
+  pause:
+    seconds: 30
+
 - name: get Jenkins CLI
   get_url:
     url: http://localhost:8080/jnlpJars/jenkins-cli.jar
