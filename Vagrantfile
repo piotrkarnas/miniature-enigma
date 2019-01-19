@@ -1,9 +1,7 @@
 Vagrant.configure(2) do |config|
-  config.vm.box = "debian/jessie64"
-  config.vm.provider :virtualbox do |vb|
-    vb,gui = true
-  end
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "deploy_jenkins_job.yml"
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.playbook = "provision/playbook.yml"
+    ansible.verbose = true
   end
 end

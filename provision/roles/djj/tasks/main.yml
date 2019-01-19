@@ -1,0 +1,24 @@
+---
+- name: Install docker
+  package:
+    name: docker.io
+    state: present
+
+- name: install python wrapper for docker
+  package:
+    name: python-docker
+    state: present
+
+- name: Install JAVA
+  package:
+    name: default-jre
+    state: present
+
+- name: run jenkins container
+  docker_container:
+    name: jenkins
+    image: jenkins/jenkins
+    state: started
+    ports:
+     - "127.0.0.1:8080:8080"
+     - "127.0.0.1:50000:50000"
